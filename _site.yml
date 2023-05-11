@@ -1,0 +1,15 @@
+name: "MIFilter-website"
+output_dir: "."
+navbar:
+  title: "MIFilter"
+  left:
+    - text: "MIFilter"
+      href: index.html
+    - text: "Functions"
+      href: Functions.html
+    - text: "Example"
+      href: Example.html
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
