@@ -270,7 +270,8 @@ package</strong></h1>
 
 
 <p>There are four main functions in this package:</p>
-<p>##Correlation_based _filtering`</p>
+<div id="correlation_based-_filtering" class="section level3">
+<h3>Correlation_based _filtering</h3>
 <p>This function will get<code>X_train</code>, <code>y_train</code>,
 <code>MI_threshold</code>, <code>cor_threshold</code> and
 <code>X_test</code>. The function will calculate the MI scores between
@@ -283,19 +284,25 @@ pair with lower MI score if the correlation of the features in that pair
 exceeds the cor_threshold. The function has three outputs which are the
 <code>reduced X_train</code>, <code>reduced X_test</code>, and the
 <code>reduced features list</code>.</p>
-<p>##Scaling_train_test</p>
+</div>
+<div id="scaling_train_test" class="section level3">
+<h3>Scaling_train_test</h3>
 <p>This function gets the train set, fit the standardizer to the train
 set, then it applies the fitted standardizer to the test set. The
 outputs of this function will be <code>scaled_X_train</code> and
 <code>scaled_X_test</code>.</p>
-<p>##MI_analysis_plot</p>
+</div>
+<div id="mi_analysis_plot" class="section level3">
+<h3>MI_analysis_plot</h3>
 <p>This is a 3D_plot for the relation of MI_threshold and the mean MI of
 the chosen features. The function will get
 <code>MI_threshold lower and upper bound</code>, and it will generate a
 vector of values for the MI_threshold. Then it will calculate the number
 of features in the reduced set using the selected threshold and
 calculate the mean MI for the remaining features.</p>
-<p>##MI_cor_plot</p>
+</div>
+<div id="mi_cor_plot" class="section level3">
+<h3>MI_cor_plot</h3>
 <p>This is a 3D_plot for the relation of MI_threshold, the cor_threshold
 and the number of remaining features. The function will get
 <code>MI_threshold lower bound</code>,
@@ -305,6 +312,7 @@ and the number of remaining features. The function will get
 values for the MI_threshold and cor_threshold. Then it will calculate
 the number of features in the reduced set using the selected
 thresholds.</p>
+</div>
 
 
 

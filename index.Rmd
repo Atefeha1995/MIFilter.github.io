@@ -15,7 +15,7 @@ This package helps with dimensional reduction (feature selection) in a dataset w
 
 
 
-***Requirements***
+### Requirements
 
 The following have to be installed and configured on the device in order
 for `MIFilter` to work successfully.
@@ -36,7 +36,7 @@ for `MIFilter` to work successfully.
 
 
 
-***Installation***
+### Installation
 
 You can install the MIFilter from
 [GitHub](https://github.com/) with:
@@ -49,7 +49,7 @@ devtools::install_github("Starwiiin/Corr_MIFiltering")
 
 
 
-***Load library***
+### Load library
 
 ``` r
 library(MIFilter)
@@ -58,7 +58,7 @@ library(MIFilter)
 
 
 
-***Example***
+### Example
 
 How do you use `MIFilter` package?
 
@@ -73,6 +73,6 @@ The sample dataset is included in the package and you can read it and use it wit
 
 
 
-***Source***
+### Source
 
 Mohammadiarvejeh, Parvin. “A Multi-Stage Feature Selection Method to Improve Classification of Super-Ager and Cognitive Decliner Using Structural Brain MRI Data – A UK Biobank Study.” (Submitted to Alzheimer’s & Dementia: Translational Research & Clinical Interventionsin 2023.)
