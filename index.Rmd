@@ -13,6 +13,8 @@ Parvin Mohammadiarvejeh, Motahareh Kashanian, Atefeh Anisi
 This package helps with dimensional reduction (feature selection) in a dataset with highly correlated features to improve the classification performance and decrease the run time. This package requires `X_train`, `y_train`, `X_test`, `linear correlation` and `the mutual information (MI) threshold` as inputs, and returns `selected features list` and `the new reduced dataset`.
 
 
+
+
 ## Requirements
 
 The following have to be installed and configured on the device in order
@@ -31,6 +33,9 @@ for `MIFilter` to work successfully.
   - `shiny`
   - `stats`
 
+
+
+
 ## Installation
 
 You can install the MIFilter from
@@ -42,11 +47,16 @@ devtools::install_github("Starwiiin/Corr_MIFiltering")
 ```
 
 
+
+
 ## Load library
 
 ``` r
 library(MIFilter)
 ```
+
+
+
 
 ## Example
 
@@ -58,6 +68,9 @@ Read a dataset in that has the following columns:
 -   `response variable`: A binary lable for each observation in the dataset.
 
 The sample dataset is included in the package and you can read it and use it with the help of the Example page.
+
+
+
 
 
 ## Source
