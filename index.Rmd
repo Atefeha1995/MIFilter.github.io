@@ -1,11 +1,7 @@
 ---
-title: "**Atefeh Anisi's Home Page**"
+title: "**MIFilter**"  # MIFilter <img src="logo.png" align="right" height="139" />
 ---
 
-**More about me:**
+**More about this package:**
 
-I am a third-year doctoral student in the IMSE department at [Iowa State University](https://www.iastate.edu/). I am an Industrial Engineering student that use text mining techniques to incorporate client feedback into multiple-generation product pricing.
-I collaborate with [Dr. Gul Kremer](https://www.imse.iastate.edu/directory/gul-kremer/) and [Dr. Sigurdur Olafsson](https://www.imse.iastate.edu/directory/profile/olafsson/).
-I enjoy learning new things, and my preferred programming languages are **Python** and **R**. I'm interested in R packages, particularly those associated with visualization, such as ggplot2.
-I earned a master's degree in IE from Sharif University of Technology. Being the past president of the Iranian Students and Scholars Association (ISSA) at Iowa State University, I have extensive experience working in teams and planning events.
-I like to read books, run, and watch movies.
+This package helps with dimensional reduction (feature selection) in a dataset with highly correlated features to improve the classification performance and decrease the run time. This package requires `X_train`, `y_train`, `X_test`, `linear correlation` and `the mutual information (MI) threshold` as inputs, and returns `selected features list` and `the new reduced dataset`.
