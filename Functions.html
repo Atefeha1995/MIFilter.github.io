@@ -13,7 +13,7 @@
 
 <title>Functions in MIFilter package</title>
 
-<script src="site_libs/header-attrs-2.21.3/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -270,8 +270,7 @@ package</strong></h1>
 
 
 <p>There are four main functions in this package:</p>
-<div id="correlation_based-_filtering" class="section level2">
-<h2>Correlation_based _filtering`</h2>
+<p>##Correlation_based _filtering`</p>
 <p>This function will get<code>X_train</code>, <code>y_train</code>,
 <code>MI_threshold</code>, <code>cor_threshold</code> and
 <code>X_test</code>. The function will calculate the MI scores between
@@ -284,25 +283,19 @@ pair with lower MI score if the correlation of the features in that pair
 exceeds the cor_threshold. The function has three outputs which are the
 <code>reduced X_train</code>, <code>reduced X_test</code>, and the
 <code>reduced features list</code>.</p>
-</div>
-<div id="scaling_train_test" class="section level2">
-<h2>Scaling_train_test</h2>
+<p>##Scaling_train_test</p>
 <p>This function gets the train set, fit the standardizer to the train
 set, then it applies the fitted standardizer to the test set. The
 outputs of this function will be <code>scaled_X_train</code> and
 <code>scaled_X_test</code>.</p>
-</div>
-<div id="mi_analysis_plot" class="section level2">
-<h2>MI_analysis_plot</h2>
+<p>##MI_analysis_plot</p>
 <p>This is a 3D_plot for the relation of MI_threshold and the mean MI of
 the chosen features. The function will get
 <code>MI_threshold lower and upper bound</code>, and it will generate a
 vector of values for the MI_threshold. Then it will calculate the number
 of features in the reduced set using the selected threshold and
 calculate the mean MI for the remaining features.</p>
-</div>
-<div id="mi_cor_plot" class="section level2">
-<h2>MI_cor_plot</h2>
+<p>##MI_cor_plot</p>
 <p>This is a 3D_plot for the relation of MI_threshold, the cor_threshold
 and the number of remaining features. The function will get
 <code>MI_threshold lower bound</code>,
@@ -312,7 +305,6 @@ and the number of remaining features. The function will get
 values for the MI_threshold and cor_threshold. Then it will calculate
 the number of features in the reduced set using the selected
 thresholds.</p>
-</div>
 
 
 
