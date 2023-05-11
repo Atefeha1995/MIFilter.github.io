@@ -4,7 +4,7 @@ title: "**This is an example which shows how you can use MIFilter package**"
 
 ### reading the dataset
 
-```{r}
+```r
 X_train <- read_csv("inst/extdata/X_train_data_stat585.csv", header = FALSE)
 X_test <- read_csv("inst/extdata/X_test_data_stat585.csv", header = FALSE)
 y_train <- read_csv("inst/extdata/y_train_data_stat585.csv", header = FALSE)
@@ -16,7 +16,7 @@ y_test <- read_csv("inst/extdata/y_test_data_stat585.csv", header = FALSE)
 
 ### Use the correlation_based_filtering function
 
-```{r}
+```r
 filtering_function_output = correlation_based_filtering(X_train, y_train, MI_threshold = 0.01, cor_threshold = 0.95, X_test)
 ```
 
@@ -24,7 +24,7 @@ filtering_function_output = correlation_based_filtering(X_train, y_train, MI_thr
 
 
 ### Check the outputs
-```{r}
+```r
 reduced_X_train = filtering_function_output$x1
 reduced_X_test = filtering_function_output$x2
 features_list = filtering_function_output$x3
@@ -34,7 +34,7 @@ features_list = filtering_function_output$x3
 
 
 ### Using the scaling_train_test function to do standardization
-```{r}
+```r
 scaling_function_output = scaling_train_test(reduced_X_train, reduced_X_test)
 
 ```
@@ -44,7 +44,7 @@ scaling_function_output = scaling_train_test(reduced_X_train, reduced_X_test)
 
 
 # Check the outputs of the scaling_train_test function
-```{r}
+```r
 scaled_X_train = scaling_function_output$y1
 scaled_X_test = scaling_function_output$y2
 
@@ -52,7 +52,7 @@ scaled_X_test = scaling_function_output$y2
 
 
 ### Add column name to the y_train and y_test
-```{r}
+```r
 colnames(y_train)[1] = "class"
 colnames(y_test)[1] = "class"
 
@@ -60,7 +60,7 @@ colnames(y_test)[1] = "class"
 
 
 ### Do the cbind for the train data set and transform the class variable from number to factor
-```{r}
+```r
 data_train = cbind(scaled_X_train, y_train)
 data_train$class = as.factor(data_train$class)
 
@@ -69,7 +69,7 @@ data_train$class = as.factor(data_train$class)
 
 
 ### Do the cbind for the test data set and transform the class variable from number to factor
-```{r}
+```r
 data_test = cbind(scaled_X_test, y_test)
 data_test$class = as.factor(data_test$class)
 
@@ -81,7 +81,7 @@ data_test$class = as.factor(data_test$class)
 We used Logistic Regression as our classification model. you can use any other type of classification models.
 
 ### Defining the logistic regression model with penalty and mixture hyperparameters
-```{r}
+```r
 #Define 
 log_reg = logistic_reg(mixture = tune(), penalty = tune(), engine = "glmnet")
 
@@ -118,7 +118,7 @@ select_best(log_reg_tuned, metric = "roc_auc")
 
 
 ### Fiting and testing the model
-```{r}
+```r
 # Fit the model using the optimal hyperparameters
 log_reg_final = logistic_reg(penalty = 1e-10, mixture = 0) %>%
                  set_engine("glmnet") %>%
@@ -142,14 +142,14 @@ conf_mat(results, truth = class,
 ## Model evaluation
 
 ### Precision
-```{r}
+```r
 precision(results, truth = class,
           estimate = .pred_class)
 ```
 
 
 ### recall
-```{r}
+```r
 recall(results, truth = class,
           estimate = .pred_class)
 ```
@@ -157,14 +157,14 @@ recall(results, truth = class,
 
 
 ### Accuracy
-```{r}
+```r
 accuracy(results, truth = class,
           estimate = .pred_class)
 ```
 
 
 ### Sensitivity
-```{r}
+```r
 sensitivity(results, truth = class,
           estimate = .pred_class)
 ```

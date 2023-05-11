@@ -1,6 +1,9 @@
 ---
-title: "**MIFilter**"  # MIFilter  <img align="right" width="200" height="200" src="logo.PNG">
+title: "**MIFilter**"   
 ---
+
+<img align="right" width="200" height="200" src="logo.PNG">
+
 Parvin Mohammadiarvejeh, Motahareh Kashanian, Atefeh Anisi
 
 2023-05-09
