@@ -1,0 +1,31 @@
+---
+title: "**Functions in MIFilter package**"
+---
+
+There are four main functions in this package:
+
+
+##Correlation_based _filtering`
+
+This function will get `X_train`, `y_train`, `MI_threshold`, `cor_threshold` and `X_test`.
+The function will calculate the MI scores between the features (continuous) in X_train and y_train (discrete).
+The function will first filter the features and keep those with MI scores greater that the MI_threshold. Then it will sort the remaining features based on their MI score in an ascending order, calculates the linear correlation between each pair of features, and omit the feature in the pair with lower MI score if the correlation of the features in that pair exceeds the cor_threshold.
+The function has three outputs which are the `reduced X_train`, `reduced X_test`, and the `reduced features list`.
+
+
+##Scaling_train_test
+
+This function gets the train set, fit the standardizer to the train set, then it applies the fitted standardizer to the test set. The outputs of this function will be `scaled_X_train` and `scaled_X_test`.
+
+
+##MI_analysis_plot
+
+This is a 3D_plot for the relation of MI_threshold and the mean MI of the chosen features.
+The function will get `MI_threshold lower and upper bound`, and it will generate a vector of values for the MI_threshold. Then it will calculate the number of features in the reduced set using the selected threshold and calculate the mean MI for the remaining features.
+
+
+##MI_cor_plot
+
+This is a 3D_plot for the relation of MI_threshold, the cor_threshold and the number of remaining features.
+The function will get `MI_threshold lower bound`, `MI_threshold upper bound`, `Cor_threshold lower bound`, `Cor_threshold upper bound`, and it will generate a vector of values for the MI_threshold and cor_threshold.
+Then it will calculate the number of features in the reduced set using the selected thresholds.

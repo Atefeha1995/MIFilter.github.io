@@ -1,0 +1,214 @@
+---
+title: "**This is an example which shows how you can use MIFilter package**"
+---
+
+### reading the dataset
+
+```{r}
+X_train <- read_csv("inst/extdata/X_train_data_stat585.csv", header = FALSE)
+X_test <- read_csv("inst/extdata/X_test_data_stat585.csv", header = FALSE)
+y_train <- read_csv("inst/extdata/y_train_data_stat585.csv", header = FALSE)
+y_test <- read_csv("inst/extdata/y_test_data_stat585.csv", header = FALSE)
+
+```
+
+
+
+### Use the correlation_based_filtering function
+
+```{r}
+filtering_function_output = correlation_based_filtering(X_train, y_train, MI_threshold = 0.01, cor_threshold = 0.95, X_test)
+```
+
+
+
+
+### Check the outputs
+```{r}
+reduced_X_train = filtering_function_output$x1
+reduced_X_test = filtering_function_output$x2
+features_list = filtering_function_output$x3
+
+```
+
+
+
+### Using the scaling_train_test function to do standardization
+```{r}
+scaling_function_output = scaling_train_test(reduced_X_train, reduced_X_test)
+
+```
+
+
+
+
+
+# Check the outputs of the scaling_train_test function
+```{r}
+scaled_X_train = scaling_function_output$y1
+scaled_X_test = scaling_function_output$y2
+
+```
+
+
+### Add column name to the y_train and y_test
+```{r}
+colnames(y_train)[1] = "class"
+colnames(y_test)[1] = "class"
+
+```
+
+
+### Do the cbind for the train data set and transform the class variable from number to factor
+```{r}
+data_train = cbind(scaled_X_train, y_train)
+data_train$class = as.factor(data_train$class)
+
+```
+
+
+
+### Do the cbind for the test data set and transform the class variable from number to factor
+```{r}
+data_test = cbind(scaled_X_test, y_test)
+data_test$class = as.factor(data_test$class)
+
+```
+
+
+## Classification
+
+We used Logistic Regression as our classification model. you can use any other type of classification models.
+
+### Defining the logistic regression model with penalty and mixture hyperparameters
+```{r}
+#Define 
+log_reg = logistic_reg(mixture = tune(), penalty = tune(), engine = "glmnet")
+
+# Define the grid search for the hyperparameters
+grid = grid_regular(mixture(), penalty(), levels = c(mixture = 4, penalty = 3))
+
+
+# Define the workflow for the model
+log_reg_wf = workflow() %>%
+  add_model(log_reg) %>%
+  add_formula(class ~ .)
+
+
+
+# Define the resampling method for the grid search
+folds = vfold_cv(data_train, v = 5)
+
+
+
+# Tune the hyperparameters using the grid search
+log_reg_tuned = tune_grid(
+  log_reg_wf,
+  resamples = folds,
+  grid = grid,
+  control = control_grid(save_pred = TRUE)
+)
+
+
+
+select_best(log_reg_tuned, metric = "roc_auc")
+
+
+```
+
+
+### Fiting and testing the model
+```{r}
+# Fit the model using the optimal hyperparameters
+log_reg_final = logistic_reg(penalty = 1e-10, mixture = 0) %>%
+                 set_engine("glmnet") %>%
+                 set_mode("classification") %>%
+                 fit(class~., data = data_train)
+
+# Evaluate the model performance on the testing set
+pred_class <- predict(log_reg_final,
+                      new_data = data_test,
+                      type = "class")
+results <- data_test %>%
+  select(class) %>%
+  bind_cols(pred_class)
+
+# Create confusion matrix
+conf_mat(results, truth = class,
+         estimate = .pred_class)
+```
+
+
+## Model evaluation
+
+### Precision
+```{r}
+precision(results, truth = class,
+          estimate = .pred_class)
+```
+
+
+### recall
+```{r}
+recall(results, truth = class,
+          estimate = .pred_class)
+```
+
+
+
+### Accuracy
+```{r}
+accuracy(results, truth = class,
+          estimate = .pred_class)
+```
+
+
+### Sensitivity
+```{r}
+sensitivity(results, truth = class,
+          estimate = .pred_class)
+```
+
+
+## MI_analysis_plot
+
+`MI_analysis_plot` is a 3D plot which shows the relation of `MI_threshold` and `mean MI` of the chosen features.
+
+```r
+MI_analysis_plot(0.001, 0.07, 0.01, X_train, y_train, X_test, 0.95)
+
+```
+
+<img align="Center" width="200" height="200" src="3D plot1.png">
+
+## MI_cor_plot
+
+`MI_cor_plot` is a 3D plot which shows the relation of `MI_threshold` and `cor_threshold` of the chosen features.
+
+```r
+MI_cor_plot(0.001, 0.07, 0.01, 0.8, 0.95, 0.05, X_train, y_train, X_test)
+```
+
+<img align="Center" width="200" height="200" src="3D plot2.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
